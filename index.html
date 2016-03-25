@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jquery日期时间选择器+转换时间戳格式</title>
+</head>
+<body>
+<div style="text-align:center;clear:both;">
+</div>
+<br><br><br><br><br><br><br>
+<center>
+<input type="text" id="sdsdsdsdsd" class="sang_Calender" />
+<button id="sasa">sdfghjk</button>
+</center>
+<script type="text/javascript" src="datetime.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    timepicker();
+    $("#sasa").click(function(){
+        toUnix();
+        });
+    function toUnix(){
+        var sdfgh = $("#sdsdsdsdsd").val();
+        var regY = /\d{4}/;
+        var regM = /\-\d{2}\-/;
+        var regD = /\-\d{2}\s/;
+        var regH = /\d{2}\:/;
+        var regMin = /\:\d{2}\:/;
+        var regS = /\:\d{2}\:\d{2}/;
+        var year = regY.exec(sdfgh).toString();
+        var month = regM.exec(sdfgh).toString().replace(/\-/g,'');
+        var day = regD.exec(sdfgh).toString().replace(/\-/,'').replace(/\s/,'');
+        var hour = regH.exec(sdfgh).toString().replace(/\:/,'');
+        var minute = regMin.exec(sdfgh).toString().replace(/\:/g,'');
+        var second = regS.exec(sdfgh).toString().replace(/\:\d{2}\:/,'');
+        var str = year + month + day + hour + minute + second;
+        var commonTime = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+        alert(commonTime.getTime()/1000 - 8*60*60);
+    };    
+</script>
+<div style="text-align:center;margin:150px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>点击文本框即可弹出日历控件</p>
+</div>
+</body>
+</html>
